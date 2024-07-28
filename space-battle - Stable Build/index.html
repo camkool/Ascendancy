@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ascendancy Battle Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ascendancy Battle Calculator</h1>
+    <h2 id="turn-indicator">Team A - Turn 1</h2>
+    <div id="winning-bar" class="winning-bar"></div>
+    <div class="container">
+        <div id="grid" class="grid"></div>
+        <div class="menu">
+            <h2>Settings Menu</h2>
+            <div class="team-selection">
+                <label for="team-select">Select Team:</label>
+                <select id="team-select">
+                    <option value="A">Team A</option>
+                    <option value="B">Team B</option>
+                </select>
+            </div>
+            <button id="add-ship">Add Ship</button>
+            <button id="add-obstacle">Add Obstacle</button>
+            <button id="reset-game">Reset Game</button>
+            <button id="start-game">Ready</button>
+            <button id="next-turn" disabled>Next Turn</button>
+            <div class="team-section">
+                <h3 id="team-a-title">Team A <input type="color" id="team-a-color" value="#FF0000" class="color-picker"></h3>
+                <div id="team-a" class="team"></div>
+                <button id="team-a-jump" class="jump-button" style="display: none;">Retreat</button>
+            </div>
+            <div class="team-section">
+                <h3 id="team-b-title">Team B <input type="color" id="team-b-color" value="#0000FF" class="color-picker"></h3>
+                <div id="team-b" class="team"></div>
+                <button id="team-b-jump" class="jump-button" style="display: none;">Retreat</button>
+            </div>
+            <div id="ship-overview" class="ship-overview"></div>
+            <div id="move-tracker" class="move-tracker"></div>
+            <button id="download-moves">Download Move Record</button>
+            <button id="download-save">Download Save Game</button>
+            <input type="file" id="load-save" accept=".json" style="display: none;">
+            <button id="load-save-button">Load Save Game</button>
+            <a href="https://sites.google.com/view/ascendancyportal/portal" target="_blank" class="ascendancy-link">Visit Ascendancy Website</a>
+            <input type="file" id="import-ships" accept=".csv" style="display: block; margin-top: 20px;">
+        </div>
+    </div>
+    <div id="ship-action-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Select Action</h3>
+            <button id="change-stats">Change Stats</button>
+            <button id="place-on-map">Place on Map</button>
+            <button id="delete-ship">Delete Ship</button>
+            <button class="close">Close</button>
+        </div>
+    </div>
+    <div id="ship-stats-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Ship Statistics</h3>
+            <label for="ship-name">Name:</label>
+            <input type="text" id="ship-name">
+            <label for="ship-range">Range:</label>
+            <input type="number" id="ship-range" max="3">
+            <label for="ship-hull">Hull Strength:</label>
+            <input type="number" id="ship-hull" max="100">
+            <label for="ship-shields">Shields:</label>
+            <input type="number" id="ship-shields" max="50">
+            <label for="ship-gunpower">Gun Power:</label>
+            <input type="number" id="ship-gunpower" max="50">
+            <button id="save-ship-stats">Save</button>
+            <button id="duplicate-ship">Duplicate</button>
+            <button class="close">Close</button>
+        </div>
+    </div>
+    <div id="attack-confirm-modal" class="modal">
+        <div class="modal-content">
+            <h3>Are you sure you want to attack the enemy ship?</h3>
+            <button id="confirm-attack">Yes</button>
+            <button id="cancel-attack">No</button>
+            <button class="close">Close</button>
+        </div>
+    </div>
+    <div id="end-game-modal" class="modal">
+        <div class="modal-content">
+            <h3>End Game Summary</h3>
+            <div id="end-game-summary"></div>
+            <button id="close-end-game">Close</button>
+            <button class="close">Close</button>
+        </div>
+    </div>
+    <div id="tooltip" class="tooltip"></div>
+    <div id="obstacle-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Customize Obstacle</h3>
+            <label for="obstacle-name">Name:</label>
+            <input type="text" id="obstacle-name">
+            <label for="obstacle-type">Type:</label>
+            <select id="obstacle-type">
+                <option value="planet">Planet</option>
+                <option value="moon">Moon</option>
+                <option value="satellite">Satellite</select>
+            <label for="obstacle-size">Size:</label>
+            <input type="number" id="obstacle-size" min="1" max="10" value="1">
+            <div id="size-example" class="size-example"></div>
+            <label for="obstacle-color">Color:</label>
+            <input type="color" id="obstacle-color" value="#808080">
+            <button id="place-obstacle">Place on Map</button>
+            <button class="close">Close</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
